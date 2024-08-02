@@ -81,6 +81,9 @@ func getAllVersions() (versionology.VersionFetcherArray, error) {
 		if version.Prerelease() != "" {
 			continue
 		}
+		if version.LessThan(semver.MustParse("1.22.22")) {
+			continue
+		}
 
 		versions = append(versions, YarnMetadata{version})
 	}
